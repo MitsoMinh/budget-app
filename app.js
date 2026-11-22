@@ -145,7 +145,8 @@ function catBarsHTML(k) {
   const rows = k.byCat.map(({c, spent, budget, carry}) => {
     const p = budget > 0 ? spent / budget : 0;
     const st = budget <= 0 ? ['var(--dim)', '', ''] : p > 1 ? ['var(--crit)', '✕', `Over by ${fmt(spent - budget)}`] : p > .85 ? ['var(--warn)', '!', `${fmt(budget - spent)} left`] : ['var(--good)', '✓', budget > 0 ? `${fmt(budget - spent)} left` : ''];
-    const pw = warnable ? L.paceWarning(spent, budget, k.elapsed, k.days) : null;
+    const fixedSpend = L.sum(k.m.tx.filter(t => t.cat === c.id && t.rec).map(t => t.amount));
+    const pw = warnable ? L.paceWarning(spent, budget, k.elapsed, k.days, fixedSpend) : null;
     const d = L.monthDelta(db, cur, c.name);
     const delta = d && d.diff !== 0 ? `<span class="dl">${d.diff > 0 ? '▲' : '▼'} ${d.pct !== null ? Math.abs(d.pct) + '%' : fmt0(Math.abs(d.diff))} vs last month</span>` : '';
     return `<div class="prow ${S.cat === c.id ? 'on' : ''}" data-act="cat" data-id="${c.id}"><div class="t"><i style="background:${colorOf(c)}"></i><span>${esc(c.name)}</span><em>${fmt0(spent)} / ${budget ? fmt0(budget) : 'no limit'}</em></div>

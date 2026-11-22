@@ -158,9 +158,10 @@
   }
 
   /* Warns before a category goes over: it is still under budget but the current pace would exceed it. */
-  function paceWarning(spent, budget, elapsed, days) {
-    if (!(budget > 0) || elapsed <= 0 || elapsed >= days || spent > budget) return null;
-    const projected = spent / elapsed * days;
+  function paceWarning(spent, budget, elapsed, days, fixed) {
+    fixed = fixed || 0;
+    if (!(budget > 0) || elapsed <= 0 || elapsed >= days || spent >= budget) return null;
+    const projected = fixed + (spent - fixed) / elapsed * days;
     return projected > budget ? {projected: round2(projected), over: round2(projected - budget)} : null;
   }
 

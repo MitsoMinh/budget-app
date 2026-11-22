@@ -128,6 +128,9 @@ test('paceWarning only fires while still under budget', () => {
   assert.strictEqual(L.paceWarning(10, 0, 10, 30), null);
   assert.strictEqual(L.paceWarning(10, 100, 0, 30), null);
   assert.strictEqual(L.paceWarning(90, 100, 30, 30), null);
+  assert.strictEqual(L.paceWarning(100, 100, 22, 30), null);
+  assert.strictEqual(L.paceWarning(25, 30, 22, 30, 25), null);
+  assert.strictEqual(L.paceWarning(70, 100, 10, 30, 40).projected, 130);
 });
 
 test('monthDelta compares categories by name', () => {
