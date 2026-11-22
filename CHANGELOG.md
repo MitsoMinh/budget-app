@@ -13,6 +13,7 @@
 - **iPhone touch:** swipe left to delete, pull down to refresh/update.
 - **Tests:** 16 automated tests for all money logic, run by GitHub Actions on every push.
 ### Changed
+- All five tabs now fit on a phone screen.
 - Pace warnings ignore fixed recurring costs and no longer fire when a category is exactly at its limit.
 - Code split into `index.html`, `style.css`, `lib.js` (pure logic), `app.js` (UI).
 - Data format upgraded to v2; old data migrates automatically.

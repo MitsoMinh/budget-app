@@ -209,3 +209,4 @@ summary{cursor:pointer;color:var(--mute);font-size:.92rem}
 .swipe .tx{position:relative;background:var(--panel);transition:transform .2s ease;touch-action:pan-y}
 .ptr{position:fixed;top:0;left:0;right:0;text-align:center;padding:10px;color:var(--mute);font-size:.85rem;transform:translateY(-100%);pointer-events:none;z-index:5}
 dialog{max-height:92vh;overflow:auto}
+@media (max-width:430px){nav.tabs{gap:0}nav.tabs button{padding:10px 7px;font-size:.78rem}}
